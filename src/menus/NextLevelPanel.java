@@ -2,14 +2,19 @@ package menus;
 
 import javax.swing.JPanel;
 
+import game.Game;
+
 public class NextLevelPanel extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8213858259378760940L;
-
-	public NextLevelPanel() {
+	private Game game;
+	
+	public NextLevelPanel(Game g, int wWidth, int wHeight) {
+		
+		this.game = g;
 		
 	}
 }

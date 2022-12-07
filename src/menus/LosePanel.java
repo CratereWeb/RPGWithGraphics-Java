@@ -2,14 +2,19 @@ package menus;
 
 import javax.swing.JPanel;
 
+import game.Game;
+
 public class LosePanel extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8213858259378760940L;
-
-	public LosePanel() {
+	private Game game;
+	
+	public LosePanel(Game g, int wWidth, int wHeight) {
 		
+		this.game = g;
+	
 	}
 }

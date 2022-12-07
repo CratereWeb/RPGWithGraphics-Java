@@ -8,6 +8,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import game.Game;
+
 
 public class TitlePanel extends JPanel {
 
@@ -16,56 +18,44 @@ public class TitlePanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -7910814463896783479L;
-	private JPanel panel;
-	private HashMap<String, JButton> buttons = new HashMap<String, JButton>();
+	private Game game;
+	private JButton newGameBtn, loadGameBtn, quitGameBtn;
 	
-	public TitlePanel() {
+	public TitlePanel(Game g) {
 		
-	}
-	public TitlePanel(HashMap<String, JButton> btns) {
+		this.game = g;
 		
-		initialize(btns);
-	}
-	
-	private void initialize(HashMap<String, JButton> btns) {
-		this.panel = new JPanel();
-		this.panel.setBounds(50,50,300,300);
-		this.panel.setBackground(Color.RED);
-		this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.Y_AXIS));
+//		Boutons
+		newGameBtn = new JButton("Nouvelle partie");
+		loadGameBtn = new JButton("Charger une partie");
+		quitGameBtn = new JButton("Quitter le jeu");
 		
-		this.buttons.put("new-game", btns.get("new-game"));
-		this.buttons.put("load-game", btns.get("load-game"));	
+//		Button Click Listeners
+		newGameBtn.addActionListener(this.game);
+		loadGameBtn.addActionListener(this.game);
+		quitGameBtn.addActionListener(this.game);
 		
-		this.buttons.get("new-game").setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.buttons.get("load-game").setAlignmentX(Component.CENTER_ALIGNMENT);
+//		Ajout au TitlePanel
+		this.add(newGameBtn);
+		this.add(loadGameBtn);
+		this.add(quitGameBtn);
 		
-		this.panel.add(this.buttons.get("new-game"));
-		this.panel.add(this.buttons.get("load-game"));
+//		Paramètres du TitlePanel
+		this.setBounds(
+				0,0, 
+				this.game.getWindow().getWidth(),
+				this.game.getWindow().getHeight()
+		);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setBackground(Color.BLACK);
 
-		
 	}
 	
 	
 	
-	public JPanel getPanel() {
-		return this.panel;
-	}
-	
-	
-//	public void addButtons(HashMap<String, JButton> btns) {
-//		
-//		for(HashMap.Entry<String, JButton> b : btns.entrySet()) {
-//			this.buttons.put(b.getKey(), b.getValue());
-//			this.panel.add(b.getValue());
-//		}
+//	public JPanel getPanel() {
+//		return this.panel;
 //	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }
