@@ -5,12 +5,12 @@ import java.util.LinkedHashMap;
 
 public abstract class Inventory {
 	
-	private LinkedHashMap<Item, Integer> content;
+	protected LinkedHashMap<Item, Integer> content;
 
 	
 //	* Constructeur
-	public Inventory(LinkedHashMap<Item, Integer> c) {
-		this.content = c;
+	public Inventory() {
+		this.content = new LinkedHashMap<Item, Integer>();
 	}
 	
 	

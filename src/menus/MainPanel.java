@@ -1,9 +1,17 @@
 package menus;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import game.Game;
 
@@ -14,9 +22,9 @@ public class MainPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 8213858259378760940L;
 	private Game game;
-	private int windowWidth, windowHeight;
+//	private int windowWidth, windowHeight;
 	private JPanel menusPanel, minimapPanel, directionsPanel, encounterPanel, fightPanel, playerInfoPanel, inventoryPanel, mapPanel, journalPanel, optionsPanel, winPanel, losePanel, nextLevelPanel;
-	
+
 	
 	public MainPanel(Game g) {
 		
@@ -24,6 +32,20 @@ public class MainPanel extends JPanel {
 		
 		int wWidth = this.game.getWindow().getWidth();
 		int wHeight = this.game.getWindow().getHeight();
+		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+		
+//		Paramètres du MainPanel
+//		this.setLayout(new GridLayout(12,8));
+//		this.setLayout(new BorderLayout());
+//		this.setSize(wWidth, wHeight);
+//		this.setPreferredSize(new Dimension(wWidth, wHeight));
+//		this.setBounds(0,0, wWidth/2, wHeight/2);
+		this.setBackground(Color.GREEN);
+//		this.setLayout(new GridBagLayout());
+		this.setLayout(null);
+		this.setBorder(border);
+		
+
 
 //		Sub-Panels
 		// Interface en surface
@@ -48,8 +70,6 @@ public class MainPanel extends JPanel {
 		
 //		Ajout au MainPanel
 		// Interface en surface
-		////// Minimap
-		this.add(minimapPanel);
 		////// Directions
 		this.add(directionsPanel);
 		////// Rencontre / Dialogue avec un Mob ou un NPC
@@ -58,6 +78,7 @@ public class MainPanel extends JPanel {
 		this.add(fightPanel);
 		////// Menus
 		this.add(menusPanel);
+		
 		// Interface en profondeur
 		this.add(playerInfoPanel);
 		this.add(inventoryPanel);
@@ -71,7 +92,7 @@ public class MainPanel extends JPanel {
 		directionsPanel.setVisible(true);
 		menusPanel.setVisible(true);
 		
-		encounterPanel.setVisible(false);
+		encounterPanel.setVisible(true);
 		fightPanel.setVisible(false);
 		
 		playerInfoPanel.setVisible(false);
@@ -81,9 +102,7 @@ public class MainPanel extends JPanel {
 		optionsPanel.setVisible(false);
 		
 		
-//		Paramètres du MainPanel
-		this.setBackground(Color.GREEN);
-		this.setBounds(0,0, windowWidth, windowHeight);
+
 		
 	}
 	

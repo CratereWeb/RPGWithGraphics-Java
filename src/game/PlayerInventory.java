@@ -8,7 +8,7 @@ public class PlayerInventory extends Inventory implements HowManyItems {
 	
 //	* Constructor
 	public PlayerInventory(LinkedHashMap<Item, Integer> content, int w) {
-		super(content);
+		super();
 		this.wallet = w;
 	}
 

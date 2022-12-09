@@ -3,12 +3,14 @@ package game;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
-public class MerchantStore extends Inventory implements InteractionShop {
+public abstract class MerchantStore extends Inventory implements InteractionShop {
 
 	
-//	* Constructor
-	public MerchantStore(LinkedHashMap<Item, Integer> c) {
-		super(c);
+
+
+	//	* Constructor
+	public MerchantStore() {
+		this.content = new LinkedHashMap<Item, Integer>();
 	}
 	
 //	* Getters
@@ -17,7 +19,7 @@ public class MerchantStore extends Inventory implements InteractionShop {
 	}
 	
 //	* Setters
-	
+	protected abstract MerchantStore initStore();
 
 	
 //	* Displayers
@@ -30,6 +32,7 @@ public class MerchantStore extends Inventory implements InteractionShop {
 	public void displayItemPrice(Item item) {
 		System.out.println(item.getName() + " coûte " + this.getItemPrice(item) + " PO.");
 	}
+	
 
 	@Override
 	public Item shop() {

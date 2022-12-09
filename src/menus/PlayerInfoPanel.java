@@ -17,6 +17,8 @@ public class PlayerInfoPanel extends JPanel {
 		
 		this.game = g;
 		
+		
+		
 	}
 	
 }

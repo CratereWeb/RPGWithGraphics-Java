@@ -21,9 +21,12 @@ public class OptionsPanel extends JPanel {
 	private static final long serialVersionUID = -7910814463896783479L;
 	private Game game;
 	
+	
 	public OptionsPanel(Game g, int wWidth, int wHeight) {
 		
 		this.game = g;
+		
+		
 	}
 
 	

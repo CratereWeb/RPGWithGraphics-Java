@@ -2,7 +2,7 @@ package game;
 
 import java.util.LinkedHashMap;
 
-public class Merchant extends NonPlayableCharacter {
+public abstract class Merchant extends NonPlayableCharacter {
 
 
 	public MerchantStore store;
@@ -10,7 +10,7 @@ public class Merchant extends NonPlayableCharacter {
 //	* Constructor
 	public Merchant(int id, String name, MerchantStore store) {
 		super(id, name);
-		this.store = store;
+//		this.store = this.initStore();
 	}
 	
 //	* Getters
@@ -18,6 +18,8 @@ public class Merchant extends NonPlayableCharacter {
 		return this.store.getContent();
 	}
 	
+//	* Setters
+	protected abstract MerchantStore initStore();
 	
 //	* Displayers
 	public void displayStoreItems() {
@@ -26,6 +28,10 @@ public class Merchant extends NonPlayableCharacter {
 		this.store.displayContent();
 		System.out.println("-----------------------------------------");
 	}
+	
+
+	@Override
+	public abstract String[] initSentences();
 
 	
 	

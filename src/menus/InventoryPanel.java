@@ -27,7 +27,6 @@ public class InventoryPanel extends JPanel {
 		this.game = g;
 		
 		
-		
 	}
 	
 	

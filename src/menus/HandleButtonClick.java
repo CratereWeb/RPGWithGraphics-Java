@@ -11,6 +11,7 @@ public class HandleButtonClick implements ActionListener {
 	
 //	private JLabel label;
 	
+	
 //	public HandleButtonClick(JLabel lab) {
 //		this.label = lab;
 //	}
@@ -31,9 +32,6 @@ public class HandleButtonClick implements ActionListener {
 		System.out.println("");
 		System.out.println(e.paramString()); // Affiche la commande de l'action déclenchée
 		System.out.println("");
-		
-		
-		
 	}
 	
 	

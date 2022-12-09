@@ -2,13 +2,17 @@ package game;
 
 //import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 //import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import menus.CharacterCreationPanel;
 import menus.HandleButtonClick;
@@ -26,6 +30,8 @@ import menus.WinPanel;
 public class Game implements ActionListener {
 	
 	private JFrame window;
+	private int windowWidth = 1200;
+	private int windowHeight = 800;
 	private JPanel titlePanel, mainPanel, characterCreationPanel, cNamePanel, cCastePanel, playerInfoPanel, inventoryPanel, mapPanel, journalPanel, optionsPanel, winPanel, losePanel, nextLevelPanel;
 	private JButton newGameBtn, loadGameBtn, quitGameBtn, confirmCharacterCreationBtn, openTitleScreenBtn, openGameScreenBtn, openPlayerInfoBtn, openInventoryBtn, openMapBtn, openJournalBtn, openOptionsBtn; 
 	private JTextField cNameInput;
@@ -36,89 +42,53 @@ public class Game implements ActionListener {
 	
 	public Game() {
 		
+//		int wWidth = 1200;
+//		int wHeight = 800;
+		
 //		/----- FENÊTRE RACINE DU JEU ------/
 		window = new JFrame(); // Fenêtre racine
-		window.setSize(1200,800);
+		window.setSize(windowWidth,windowHeight);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setTitle("RPG");
 		
 		
 //		/------ CREATION DES ELEMENTS PANELS / BOUTONS ------/
+
 //		ECRAN TITRE
 		titlePanel = new TitlePanel(this); // Écran titre
-//		titlePanel.setBackground(Color.BLACK);
-//		titlePanel.setBounds(0, 0, window.getWidth(), window.getHeight());
 
-		
 //		ECRAN DE CREATION DU PERSONNAGE			
 		characterCreationPanel = new CharacterCreationPanel(this);
 		
 //		ECRAN DE JEU PRINCIPAL
 		mainPanel = new MainPanel(this); // Écran de jeu principal
-//		mainPanel.setBackground(Color.GREEN);
-//		mainPanel.setBounds(300, 100, 100, 100);
+
 		// Boutons de l'interface en jeu
 		openTitleScreenBtn = new JButton("Retour à l'écran titre");
 		openGameScreenBtn = new JButton("Retour au jeu");
-//		openPlayerInfoBtn = new JButton("Personnage");
-//		openInventoryBtn = new JButton("Inventaire");
-//		openMapBtn = new JButton("Carte");
-//		openJournalBtn = new JButton("Journal");
-//		openOptionsBtn = new JButton("Options");
 		
 		// Panneaux s'affichant au clic sur les boutons
-//		playerInfoPanel = new PlayerInfoPanel(); // Écran affichant les caractéristiques du personnage
-//		playerInfoPanel.setBackground(Color.BLUE);
-//		playerInfoPanel.setBounds(300, 100, 100, 100);
+
 		
-		
-//		inventoryPanel = new InventoryPanel(this); // Écran affichant l'inventaire
-//		mapPanel = new MapPanel(this); // Écran affichant la map
-//		journalPanel = new JournalPanel(this); // Écran affichant le journal de quêtes
-//		optionsPanel = new OptionsPanel(); // Écran affichant les options de jeu
-//		winPanel = new WinPanel(); // Écran affichant le bilan après une victoire en combat
-//		losePanel = new LosePanel(); // Écran affichant le bilan après une défaite en combat
-//		nextLevelPanel = new NextLevelPanel(); // Écran affichant les nouvelles caractéristiques du personnage 		lorsqu'il passe au niveau supérieur
 		
 //		ECOUTEURS DE CLIC SUR LES BOUTONS
-//		newGameBtn.addActionListener(this);
-//		loadGameBtn.addActionListener(this);
-//		quitGameBtn.addActionListener(this);
-		//confirmCharacterCreationBtn.addActionListener(this);
 		openTitleScreenBtn.addActionListener(this);
 		openGameScreenBtn.addActionListener(this);
-//		openPlayerInfoBtn.addActionListener(this);
-//		openInventoryBtn.addActionListener(this);
-//		openMapBtn.addActionListener(this);
-//		openJournalBtn.addActionListener(this);
-//		openOptionsBtn.addActionListener(this);
+
 		
 		
 //		/----- IMBRIQUER LES ELEMENTS ------/
-//		ECRAN TITRE
-//		titlePanel.add(newGameBtn);
-//		titlePanel.add(loadGameBtn);
-//		titlePanel.add(quitGameBtn);
-		
-//		ECRAN DE CREATION DU PERSONNAGE
-//		characterCreationPanel.add(cNamePanel);
-//		characterCreationPanel.add(cCastePanel);
-//		characterCreationPanel.add(confirmCharacterCreationBtn);
-
-//		ECRAN DE JEU PRINCIPAL
-//		mainPanel.add(playerInfoPanel);
-//		mainPanel.add(inventoryPanel);
-//		mainPanel.add(mapPanel);
-//		mainPanel.add(journalPanel);
-//		mainPanel.add(optionsPanel);
-//		mainPanel.add(winPanel);
-//		mainPanel.add(losePanel);
-//		mainPanel.add(nextLevelPanel);
 		
 //		FENETRE PRINCIPALE
 		window.add(titlePanel);
 		window.add(characterCreationPanel);
-		window.add(mainPanel);
+//		window.add(mainPanel);
+		
+//		mainPanel.setLayout(new GridBagLayout());
+//		GridBagConstraints gbc = new GridBagConstraints();
+//		gbc.gridwidth = 5;
+//		gbc.gridheight = 8;
+//		window.add(mainPanel, gbc);
 		
 //		VISIBILITE DES PANNEAUX
 		titlePanel.setVisible(true);
@@ -126,7 +96,7 @@ public class Game implements ActionListener {
 		mainPanel.setVisible(false);
 		
 		
-		window.setResizable(true);
+		window.setResizable(false);
 		window.setVisible(true);
 		
 	}
@@ -155,8 +125,8 @@ public class Game implements ActionListener {
 	private void openCharacterCreator() {
 		System.out.println("Menu de création de personnage...");
 		System.out.println("");
-		this.window.add(characterCreationPanel);
 		titlePanel.setVisible(false);
+		this.window.add(characterCreationPanel);
 		characterCreationPanel.setVisible(true);
 		System.out.println("Affiché !");
 	}
@@ -166,10 +136,12 @@ public class Game implements ActionListener {
 		try {		
 			titlePanel.setVisible(false);
 			characterCreationPanel.setVisible(false);
+			this.window.add(mainPanel);
 			mainPanel.setVisible(true);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println("Affiché !");
 	}
 	private void openPlayerInfo() {
 		System.out.println("Ouverture de l'écran de personnage...");
@@ -192,39 +164,18 @@ public class Game implements ActionListener {
 		System.out.println("");
 	}
 	
-	private static HashMap<String, JButton> initGameButtons(HandleButtonClick cl) {
-		
-		HashMap<String, JButton> buttons = new HashMap<String, JButton>();
-		
-		JButton newGameBtn = new JButton("Nouvelle partie");
-		JButton loadGameBtn = new JButton("Charger la partie");
-		JButton openCharacter = new JButton("Personnage");
-		JButton openInventory = new JButton("Inventaire");
-		JButton openMap = new JButton("Carte");
-		JButton openJournal = new JButton("Journal");
-		JButton openOptions = new JButton("Options");
-		
-		buttons.put("new-game", newGameBtn);
-		buttons.put("load-game", loadGameBtn);
-		buttons.put("open-character", openCharacter);
-		buttons.put("open-inventory", openInventory);
-		buttons.put("open-map", openMap);
-		buttons.put("open-journal", openJournal);
-		buttons.put("open-options", openOptions);
-		
-//		for(JButton b : buttons.values()) {
-//			b.addActionListener(cl);
-//		}
-		return buttons;
-		
-	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		String cmd = e.getActionCommand();
 		
+		
 		System.out.println("'" + cmd + "'" + " a été demandé");
+		System.out.println(e);
+//		System.out.println(e.getSource().);
+//		System.out.println(e.getID());
+//		System.out.println(e.getClass());
 		
 		switch(cmd) {
 			case "Nouvelle partie": createNewGame(); break;
@@ -242,5 +193,31 @@ public class Game implements ActionListener {
 		
 	}
 	
+//	private static HashMap<String, JButton> initGameButtons(HandleButtonClick cl) {
+//		
+//		HashMap<String, JButton> buttons = new HashMap<String, JButton>();
+//		
+//		JButton newGameBtn = new JButton("Nouvelle partie");
+//		JButton loadGameBtn = new JButton("Charger la partie");
+//		JButton openCharacter = new JButton("Personnage");
+//		JButton openInventory = new JButton("Inventaire");
+//		JButton openMap = new JButton("Carte");
+//		JButton openJournal = new JButton("Journal");
+//		JButton openOptions = new JButton("Options");
+//		
+//		buttons.put("new-game", newGameBtn);
+//		buttons.put("load-game", loadGameBtn);
+//		buttons.put("open-character", openCharacter);
+//		buttons.put("open-inventory", openInventory);
+//		buttons.put("open-map", openMap);
+//		buttons.put("open-journal", openJournal);
+//		buttons.put("open-options", openOptions);
+//		
+////		for(JButton b : buttons.values()) {
+////			b.addActionListener(cl);
+////		}
+//		return buttons;
+//		
+//	}
 	
 }
